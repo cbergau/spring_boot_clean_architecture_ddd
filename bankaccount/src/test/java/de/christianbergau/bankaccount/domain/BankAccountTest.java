@@ -11,7 +11,7 @@ class BankAccountTest {
 
     @BeforeEach
     void setUp() {
-        bankAccount = new BankAccount();
+        bankAccount = new BankAccount(IBAN.of("DE89 3704 0044 0532 0130 00"));
     }
 
     @Test
@@ -36,5 +36,33 @@ class BankAccountTest {
 
         bankAccount.transfer(100.00);
         assertEquals(170.00, bankAccount.getBalance());
+    }
+
+    @Test
+    void testTwoAccoutsWithSameIBANAreEqual() {
+        IBAN iban = IBAN.of("DE89 3704 0044 0532 0130 00");
+        BankAccount bankAccount1 = new BankAccount(iban);
+        BankAccount bankAccount2 = new BankAccount(iban);
+
+        assertEquals(bankAccount1, bankAccount2);
+    }
+
+    @Test
+    void testTwoAccoutsWithDifferentIBANAreEqual() {
+        BankAccount bankAccount1 = new BankAccount(IBAN.of("DE89 3704 0044 0532 0130 00"));
+        BankAccount bankAccount2 = new BankAccount(IBAN.of("DE89 3704 0044 0532 1111 22"));
+
+        assertNotEquals(bankAccount1, bankAccount2);
+    }
+
+    @Test
+    void testBankAccountIsNotEqualsNull() {
+        assertNotEquals(new BankAccount(IBAN.of("DE89 3704 0044 0532 0130 00")), null);
+    }
+
+    @Test
+    void testBankAccountIsNotEqualToAnIban() {
+        IBAN iban = IBAN.of("DE89 3704 0044 0532 0130 00");
+        assertNotEquals(new BankAccount(iban), iban);
     }
 }
