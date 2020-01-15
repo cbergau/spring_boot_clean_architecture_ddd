@@ -45,6 +45,7 @@ class BankAccountTest {
         BankAccount bankAccount2 = new BankAccount(iban);
 
         assertEquals(bankAccount1, bankAccount2);
+        assertEquals(bankAccount1.hashCode(), bankAccount2.hashCode());
     }
 
     @Test
@@ -53,6 +54,7 @@ class BankAccountTest {
         BankAccount bankAccount2 = new BankAccount(IBAN.of("DE89 3704 0044 0532 1111 22"));
 
         assertNotEquals(bankAccount1, bankAccount2);
+        assertNotEquals(bankAccount1.hashCode(), bankAccount2.hashCode());
     }
 
     @Test

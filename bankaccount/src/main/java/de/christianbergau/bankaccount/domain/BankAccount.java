@@ -1,11 +1,13 @@
 package de.christianbergau.bankaccount.domain;
 
+import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
+@EqualsAndHashCode
 public class BankAccount {
     private final IBAN iban;
     private List<TransferEvent> events = new ArrayList<>();
@@ -20,19 +22,5 @@ public class BankAccount {
 
     public void withdraw(double amount) {
         events.add(new TransferEvent(amount * -1));
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == null) {
-            return false;
-        }
-
-        if (!(other instanceof BankAccount)) {
-            return false;
-        }
-
-        BankAccount otherBankAccount = (BankAccount) other;
-        return iban.getValue().equals(otherBankAccount.iban.getValue());
     }
 }
