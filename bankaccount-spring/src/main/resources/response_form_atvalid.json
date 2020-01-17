@@ -1,0 +1,57 @@
+{
+  "timestamp": "2020-01-16T18:00:24.169+0000",
+  "status": 400,
+  "error": "Bad Request",
+  "errors": [
+    {
+      "codes": [
+        "NotEmpty.transferModel.toIban",
+        "NotEmpty.toIban",
+        "NotEmpty"
+      ],
+      "arguments": [
+        {
+          "codes": [
+            "transferModel.toIban",
+            "toIban"
+          ],
+          "arguments": null,
+          "defaultMessage": "toIban",
+          "code": "toIban"
+        }
+      ],
+      "defaultMessage": "darf nicht leer sein",
+      "objectName": "transferModel",
+      "field": "toIban",
+      "rejectedValue": "",
+      "bindingFailure": false,
+      "code": "NotEmpty"
+    },
+    {
+      "codes": [
+        "NotEmpty.transferModel.fromIban",
+        "NotEmpty.fromIban",
+        "NotEmpty"
+      ],
+      "arguments": [
+        {
+          "codes": [
+            "transferModel.fromIban",
+            "fromIban"
+          ],
+          "arguments": null,
+          "defaultMessage": "fromIban",
+          "code": "fromIban"
+        }
+      ],
+      "defaultMessage": "darf nicht leer sein",
+      "objectName": "transferModel",
+      "field": "fromIban",
+      "rejectedValue": null,
+      "bindingFailure": false,
+      "code": "NotEmpty"
+    }
+  ],
+  "message": "Validation failed for object='transferModel'. Error count: 2",
+  "path": "/transfer"
+}
