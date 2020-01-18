@@ -1,6 +1,8 @@
 Introduction
 ===
 
+[![Build Status](https://travis-ci.com/cbergau/spring_boot_clean_architecture_ddd.svg?branch=master)](https://travis-ci.com/cbergau/spring_boot_clean_architecture_ddd)
+
 **State: Unfinished**
 
 Needs: Refactoring, Better DDD Approach (Domain Events, CQRS, Aggregate Root, etc)
