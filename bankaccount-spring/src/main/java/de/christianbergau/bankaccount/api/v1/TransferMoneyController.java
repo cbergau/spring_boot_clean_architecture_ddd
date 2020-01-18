@@ -1,5 +1,6 @@
-package de.christianbergau.bankaccount.controllers;
+package de.christianbergau.bankaccount.api.v1;
 
+import de.christianbergau.bankaccount.api.v1.request.TransferModel;
 import de.christianbergau.bankaccount.presenters.TransferMoneyAPIPresenter;
 import de.christianbergau.bankaccount.usecase.TransferMoneyRequest;
 import de.christianbergau.bankaccount.usecase.TransferMoneyUseCase;

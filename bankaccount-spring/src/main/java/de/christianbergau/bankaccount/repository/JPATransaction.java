@@ -11,9 +11,10 @@ import javax.persistence.*;
 @Table(name = "Transactions")
 public class JPATransaction {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    @GeneratedValue()
+    private Long id;
 
+    private String transactionNumber;
     private double amount;
     private String fromIban;
     private String toIban;

@@ -8,6 +8,7 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import java.util.Set;
+import java.util.UUID;
 
 public class TransferMoneyInteractor implements TransferMoneyUseCase {
     private TransferMoneyPresenter presenter;
@@ -29,8 +30,20 @@ public class TransferMoneyInteractor implements TransferMoneyUseCase {
             return;
         }
 
-        saveTransactionRepository.saveTransaction(
-                new Transaction(request.getAmount(), request.getFromIban(), request.getToIban())
+        Transaction transaction = new Transaction(
+                UUID.randomUUID().toString(),
+                request.getAmount(),
+                request.getFromIban(),
+                request.getToIban()
+        );
+
+        saveTransactionRepository.saveTransaction(transaction);
+
+        presenter.presentSuccess(
+                transaction.getTransactionNumber(),
+                transaction.getFromIban(),
+                transaction.getToIban(),
+                transaction.getAmount()
         );
     }
 }

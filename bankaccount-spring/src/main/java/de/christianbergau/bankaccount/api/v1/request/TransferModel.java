@@ -1,7 +1,10 @@
-package de.christianbergau.bankaccount.controllers;
+package de.christianbergau.bankaccount.api.v1.request;
+
+import lombok.Builder;
 
 import javax.validation.constraints.NotEmpty;
 
+@Builder
 public class TransferModel {
     public double amount;
 

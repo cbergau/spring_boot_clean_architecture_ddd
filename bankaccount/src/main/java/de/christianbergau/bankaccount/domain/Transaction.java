@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @EqualsAndHashCode
 public class Transaction {
+    private final String transactionNumber;
     private final double amount;
     private final String fromIban;
     private final String toIban;
