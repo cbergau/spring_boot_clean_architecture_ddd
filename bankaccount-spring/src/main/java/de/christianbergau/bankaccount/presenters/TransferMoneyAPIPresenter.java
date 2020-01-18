@@ -16,13 +16,13 @@ public class TransferMoneyAPIPresenter implements TransferMoneyPresenter, BaseSp
     @Override
     public void presentError(Set<ConstraintViolation<TransferMoneyRequest>> errors) {
         //@todo Use Java Collector (probably groupingBy?)
-        Map<String, List<String>> map = new HashMap<>();
+        Map<String, Set<String>> map = new HashMap<>();
 
         errors.forEach(violation -> {
             if (map.containsKey(violation.getPropertyPath().toString())) {
                 map.get(violation.getPropertyPath().toString()).add(violation.getMessage());
             } else {
-                ArrayList<String> tempList = new ArrayList<>();
+                Set<String> tempList = new HashSet<>();
                 tempList.add(violation.getMessage());
                 map.put(violation.getPropertyPath().toString(), tempList);
             }

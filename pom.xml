@@ -11,6 +11,5 @@
     <modules>
         <module>bankaccount</module>
         <module>bankaccount-spring</module>
-        <module>bankaccount-data</module>
     </modules>
 </project>

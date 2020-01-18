@@ -18,7 +18,7 @@ public class TransferMoneyController {
 
     @PostMapping("/transfer")
     public ResponseEntity<String> transfer(@RequestBody TransferModel model) {
-        useCase.execute(new TransferMoneyRequest(model.fromIban, model.toIban));
+        useCase.execute(new TransferMoneyRequest(model.fromIban, model.toIban, model.amount));
         return presenter.getResponseEntity();
     }
 }
