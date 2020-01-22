@@ -3,6 +3,10 @@ language: java
 jdk:
     - openjdk11
 
+env:
+    global:
+        CC_TEST_REPORTER_ID=71d8641c16e6483353db0a57fd8afd7d311724ea0c7002840d45a205867bcdce
+
 before_script:
     - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
     - chmod +x ./cc-test-reporter
