@@ -13,6 +13,3 @@ after_success:
 
 script:
     - mvn verify
-
-after_script:
-    - ./cc-test-reporter after-build --coverage-input-type jacoco --exit-code $TRAVIS_TEST_RESULT
