@@ -12,7 +12,7 @@ after_success:
     - bash <(curl -s https://codecov.io/bash)
 
 script:
-    - mvn package verify
+    - mvn verify
 
 after_script:
     - ./cc-test-reporter after-build --coverage-input-type jacoco --exit-code $TRAVIS_TEST_RESULT
