@@ -1,9 +1,13 @@
 package de.christianbergau.bankaccount.api.v1.request;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class TransferModel {
     public double amount;
