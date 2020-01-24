@@ -12,6 +12,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.mapping;
 
 public class TransferMoneyAPIPresenter implements TransferMoneyPresenter, BaseSpringPresenter {
 
@@ -19,18 +23,13 @@ public class TransferMoneyAPIPresenter implements TransferMoneyPresenter, BaseSp
 
     @Override
     public void presentError(Set<ConstraintViolation<TransferMoneyRequest>> errors) {
-        //@todo Use Java Collector (probably groupingBy?)
-        Map<String, Set<String>> map = new HashMap<>();
-
-        errors.forEach(violation -> {
-            if (map.containsKey(violation.getPropertyPath().toString())) {
-                map.get(violation.getPropertyPath().toString()).add(violation.getMessage());
-            } else {
-                Set<String> tempList = new HashSet<>();
-                tempList.add(violation.getMessage());
-                map.put(violation.getPropertyPath().toString(), tempList);
-            }
-        });
+        Map<String, Set<String>> map = errors
+                .stream()
+                .collect(groupingBy(
+                        violation -> violation.getPropertyPath().toString(),
+                        HashMap::new,
+                        mapping(ConstraintViolation::getMessage, Collectors.toSet()))
+                );
 
         try {
             responseEntity = ResponseEntity
