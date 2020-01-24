@@ -22,6 +22,8 @@
         <module>bankaccount</module>
         <module>bankaccount-spring</module>
         <module>report</module>
+        <module>bankaccount-cli</module>
+        <module>bankaccount-data-inmemory</module>
     </modules>
 
     <dependencies>
