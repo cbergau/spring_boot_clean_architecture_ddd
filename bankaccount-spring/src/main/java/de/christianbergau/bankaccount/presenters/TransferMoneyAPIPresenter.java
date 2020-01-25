@@ -5,11 +5,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import de.christianbergau.bankaccount.api.v1.response.TransactionModel;
 import de.christianbergau.bankaccount.usecase.TransferMoneyPresenter;
 import de.christianbergau.bankaccount.usecase.TransferMoneyRequest;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import javax.validation.ConstraintViolation;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -17,9 +18,11 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.mapping;
 
+@RequiredArgsConstructor
 public class TransferMoneyAPIPresenter implements TransferMoneyPresenter, BaseSpringPresenter {
 
     private ResponseEntity<String> responseEntity;
+    private final ObjectMapper objectMapper;
 
     @Override
     public void presentError(Set<ConstraintViolation<TransferMoneyRequest>> errors) {
@@ -34,9 +37,11 @@ public class TransferMoneyAPIPresenter implements TransferMoneyPresenter, BaseSp
         try {
             responseEntity = ResponseEntity
                     .badRequest()
-                    .body(new ObjectMapper().writeValueAsString(map));
+                    .body(objectMapper.writeValueAsString(map));
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            responseEntity = ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .build();
         }
     }
 
@@ -52,9 +57,11 @@ public class TransferMoneyAPIPresenter implements TransferMoneyPresenter, BaseSp
         try {
             responseEntity = ResponseEntity
                     .ok()
-                    .body(new ObjectMapper().writeValueAsString(transactionModel));
+                    .body(objectMapper.writeValueAsString(transactionModel));
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            responseEntity = ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .build();
         }
     }
 
