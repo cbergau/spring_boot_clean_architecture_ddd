@@ -19,11 +19,11 @@
     </properties>
 
     <modules>
-        <module>bankaccount</module>
-        <module>bankaccount-spring</module>
+        <module>banking</module>
+        <module>banking-data-inmemory</module>
+        <module>banking-cli</module>
+        <module>banking-spring</module>
         <module>report</module>
-        <module>bankaccount-cli</module>
-        <module>bankaccount-data-inmemory</module>
     </modules>
 
     <dependencies>
