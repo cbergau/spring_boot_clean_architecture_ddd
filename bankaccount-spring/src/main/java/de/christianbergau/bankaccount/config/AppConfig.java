@@ -1,5 +1,6 @@
 package de.christianbergau.bankaccount.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.christianbergau.bankaccount.presenters.TransferMoneyAPIPresenter;
 import de.christianbergau.bankaccount.repository.JPATransactionAdapter;
 import de.christianbergau.bankaccount.repository.JPATransactionMapper;
@@ -16,7 +17,7 @@ public class AppConfig {
 
     @Bean
     public TransferMoneyAPIPresenter transferMoneyPresenter() {
-        return new TransferMoneyAPIPresenter();
+        return new TransferMoneyAPIPresenter(new ObjectMapper());
     }
 
     @Bean
