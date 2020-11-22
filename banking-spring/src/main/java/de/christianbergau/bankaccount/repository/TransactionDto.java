@@ -2,17 +2,17 @@ package de.christianbergau.bankaccount.repository;
 
 import lombok.Builder;
 import lombok.Getter;
+import org.springframework.data.redis.core.RedisHash;
 
 import javax.persistence.*;
 
 @Builder
 @Getter
 @Entity
-@Table(name = "Transactions")
-public class JPATransaction {
+public class TransactionDto {
     @Id
     @GeneratedValue()
-    private Long id;
+    private String id;
 
     private String transactionNumber;
     private double amount;

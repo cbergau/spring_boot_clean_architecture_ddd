@@ -1,10 +1,12 @@
 package de.christianbergau.bankaccount.usecase;
 
+import reactor.core.publisher.Mono;
+
 import javax.validation.ConstraintViolation;
 import java.util.Set;
 
 public interface TransferMoneyPresenter {
-    public void presentError(Set<ConstraintViolation<TransferMoneyRequest>> errors);
+    void presentError(Set<ConstraintViolation<TransferMoneyRequest>> errors);
 
-    public void presentSuccess(String transactionId, String fromIban, String toIban, double amount);
+    void presentSuccess(String transactionNumber, String fromIban, String toIban, double amount);
 }

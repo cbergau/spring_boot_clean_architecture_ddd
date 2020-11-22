@@ -13,7 +13,7 @@ public class TransferMoneyCliPresenter implements TransferMoneyPresenter {
     }
 
     @Override
-    public void presentSuccess(String transactionId, String fromIban, String toIban, double amount) {
-        System.out.println(String.format("Transaction: %s, from: %s, to: %s", transactionId, fromIban, toIban));
+    public void presentSuccess(String transactionNumber, String fromIban, String toIban, double amount) {
+        System.out.println(String.format("Transaction: %s, from: %s, to: %s", transactionNumber, fromIban, toIban));
     }
 }

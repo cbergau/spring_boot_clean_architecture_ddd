@@ -4,13 +4,13 @@ import de.christianbergau.bankaccount.domain.Transaction;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class JPATransactionAdapter implements SaveTransactionRepository {
+public class TransactionAdapter implements SaveTransactionRepository {
 
-    private final JPATransactionMapper mapper;
-    private final JPATransactionRepository repository;
+    private final TransactionDtoMapper mapper;
+    private final TransactionRepository repository;
 
     @Override
     public void saveTransaction(Transaction transaction) {
-        repository.save(mapper.toJPAEntity(transaction));
+        repository.save(mapper.toDto(transaction));
     }
 }

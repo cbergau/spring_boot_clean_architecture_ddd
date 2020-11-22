@@ -1,6 +1,6 @@
 package de.christianbergau.bankaccount.repository;
 
-public interface JPAMapper<T, U> {
-    public U toJPAEntity(T t);
+public interface DtoMapper<T, U> {
+    public U toDto(T t);
     public T toDomainEntity(U u);
 }

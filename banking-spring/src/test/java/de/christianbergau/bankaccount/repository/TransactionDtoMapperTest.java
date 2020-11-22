@@ -8,9 +8,9 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class JPATransactionMapperTest {
+public class TransactionDtoMapperTest {
 
-    private JPATransactionMapper mapper;
+    private TransactionDtoMapper mapper;
 
     double amount = 100.00;
     String transactionNumber = UUID.randomUUID().toString();
@@ -19,7 +19,7 @@ public class JPATransactionMapperTest {
 
     @BeforeEach
     void setUp() {
-        mapper = new JPATransactionMapper();
+        mapper = new TransactionDtoMapper();
     }
 
     @Test
@@ -28,19 +28,19 @@ public class JPATransactionMapperTest {
         Transaction transaction = new Transaction(transactionNumber, amount, fromIban, toIban);
 
         // when
-        JPATransaction jpaTransaction = mapper.toJPAEntity(transaction);
+        TransactionDto transactionDto = mapper.toDto(transaction);
 
         // then
-        assertEquals(transactionNumber, jpaTransaction.getTransactionNumber());
-        assertEquals(amount, jpaTransaction.getAmount());
-        assertEquals(fromIban, jpaTransaction.getFromIban());
-        assertEquals(toIban, jpaTransaction.getToIban());
+        assertEquals(transactionNumber, transactionDto.getTransactionNumber());
+        assertEquals(amount, transactionDto.getAmount());
+        assertEquals(fromIban, transactionDto.getFromIban());
+        assertEquals(toIban, transactionDto.getToIban());
     }
 
     @Test
     void testToDomainEntity() {
         // given
-        JPATransaction jpaTransaction = JPATransaction.builder()
+        TransactionDto transactionDto = TransactionDto.builder()
                 .transactionNumber(transactionNumber)
                 .amount(amount)
                 .fromIban(fromIban)
@@ -48,7 +48,7 @@ public class JPATransactionMapperTest {
                 .build();
 
         // when
-        Transaction transaction = mapper.toDomainEntity(jpaTransaction);
+        Transaction transaction = mapper.toDomainEntity(transactionDto);
 
         // then
         assertEquals(transactionNumber, transaction.getTransactionNumber());

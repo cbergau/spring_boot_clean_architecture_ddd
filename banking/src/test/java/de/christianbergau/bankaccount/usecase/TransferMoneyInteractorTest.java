@@ -68,7 +68,7 @@ class TransferMoneyPresenterErrorSpy implements TransferMoneyPresenter {
     }
 
     @Override
-    public void presentSuccess(String transactionId, String fromIban, String toIban, double amount) {
+    public void presentSuccess(String transactionNumber, String fromIban, String toIban, double amount) {
 
     }
 }
@@ -87,8 +87,8 @@ class TransferMoneyPresenterSpy implements TransferMoneyPresenter {
     }
 
     @Override
-    public void presentSuccess(String transactionId, String fromIban, String toIban, double amount) {
-        this.transactionId = transactionId;
+    public void presentSuccess(String transactionNumber, String fromIban, String toIban, double amount) {
+        this.transactionId = transactionNumber;
         this.fromIban = fromIban;
         this.toIban = toIban;
         this.amount = amount;
