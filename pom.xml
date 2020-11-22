@@ -23,7 +23,6 @@
         <module>banking-data-inmemory</module>
         <module>banking-cli</module>
         <module>banking-spring</module>
-        <module>banking-spring-reactive</module>
         <module>report</module>
     </modules>
 
