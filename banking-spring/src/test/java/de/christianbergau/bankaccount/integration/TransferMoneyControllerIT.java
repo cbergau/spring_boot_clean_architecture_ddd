@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @WebAppConfiguration
-public class TransferMoneyControllerTest {
+public class TransferMoneyControllerIT {
 
     private MockMvc mockMvc;
 
@@ -35,7 +35,7 @@ public class TransferMoneyControllerTest {
 
     @Test
     void testTransferMoneyWithBadRequest() throws Exception {
-        mockMvc.perform(post("/transfer")
+        mockMvc.perform(post("/v1/transfer")
                 .content("{\"fromIban\":\"\", \"toIban\": \"\", \"amount\": \"\"}")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
@@ -49,7 +49,7 @@ public class TransferMoneyControllerTest {
                 .toIban("DE89 3704 0044 0532 0130 11")
                 .build();
 
-        MvcResult r = mockMvc.perform(post("/transfer")
+        MvcResult r = mockMvc.perform(post("/v1/transfer")
                 .content(objectMapper.writeValueAsString(transferModel))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
