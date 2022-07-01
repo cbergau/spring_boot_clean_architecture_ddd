@@ -15,7 +15,7 @@
 
     <properties>
         <springfox-swagger.version>2.9.2</springfox-swagger.version>
-        <spring.version>2.4.0</spring.version>
+        <spring.version>2.5.12</spring.version>
     </properties>
 
     <dependencies>
