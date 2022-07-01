@@ -54,31 +54,4 @@ public class TransferMoneyInteractor implements TransferMoneyUseCase {
                 transaction.getAmount()
         );
     }
-
-    public void executeAsync(TransferMoneyRequest request) {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        validator = factory.getValidator();
-        Set<ConstraintViolation<TransferMoneyRequest>> violations = validator.validate(request);
-
-        if (!violations.isEmpty()) {
-            presenter.presentError(violations);
-            return;
-        }
-
-        Transaction transaction = new Transaction(
-                UUID.randomUUID().toString(),
-                request.getAmount(),
-                request.getFromIban(),
-                request.getToIban()
-        );
-
-        // Was wenn das Mono fehlschlägt? Können wir hier überhaupt differenzieren?
-        Mono<Transaction> transactionMono = saveTransactionReactiveRepository.saveTransaction(transaction);
-        transactionMono.doOnSuccess(transactionAfterSave ->
-                presenter.presentSuccess(
-                        transactionAfterSave.getTransactionNumber(),
-                        transactionAfterSave.getFromIban(),
-                        transactionAfterSave.getToIban(),
-                        transactionAfterSave.getAmount()));
-    }
 }
